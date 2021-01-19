@@ -20,9 +20,20 @@ class MaterialActivity : AppCompatActivity() {
         Log.d(TAG,"SecretNumber:${secretNumber.secretNumber}")
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.Replay))
+                    .setMessage(getString(R.string.Are_you_sure))
+                    .setPositiveButton(getString(R.string.ok),{dialog,which->
+                        secretNumber.reset()
+                        counter.text = secretNumber.count.toString()
+                        number.setText("")
+                    })
+                    .setNeutralButton(getString(R.string.cancel),null)
+                    .show()
+
         }
+        counter.text = secretNumber.count.toString()
+
     }
     fun check(view: View){
         try {
@@ -36,6 +47,7 @@ class MaterialActivity : AppCompatActivity() {
             }else if (diff <0){
                 message = getString(R.string.Bigger)
             }
+            counter.text = secretNumber.count.toString()
 //            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.dialog_title))
@@ -45,7 +57,7 @@ class MaterialActivity : AppCompatActivity() {
         }catch (e:NumberFormatException){
             //println("請輸入數字 1-10")
             Log.d(TAG,"請輸入數字 1-10")
-            Toast.makeText(this, "請輸入數字 1-10", Toast.LENGTH_LONG).show()
+            bug.text = "請輸入數字 1-10 !!!"
         }
     }
 }

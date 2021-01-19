@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.猜數字">
         <activity
-            android:name=".MateriaActivity"
+            android:name=".MaterialActivity"
             android:label="@string/title_activity_materia"
             android:theme="@style/Theme.猜數字.NoActionBar">
             <intent-filter>
