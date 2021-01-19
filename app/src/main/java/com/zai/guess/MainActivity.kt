@@ -10,10 +10,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     val secretNumber = SecretNumber()
+    val TAG = MainActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("MainActivity","SecretNumber:${secretNumber.secretNumber}")
+        Log.d(TAG,"SecretNumber:${secretNumber.secretNumber}")
     }
     fun check(view:View){
         try {
@@ -21,21 +22,21 @@ class MainActivity : AppCompatActivity() {
            // println("number:$n")
             Log.d("MainActivity","number:$n")
             val diff = secretNumber.different(n)
-            var message = "Bingo"
+            var message = getString(R.string.Bingo)
             if (diff> 0){
-                message = "再小一點"
+                message = getString(R.string.Smaller)
             }else if (diff <0){
-                message = "再大一點"
+                message = getString(R.string.Bigger)
             }
 //            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         AlertDialog.Builder(this)
-            .setTitle("Message")
+            .setTitle(getString(R.string.dialog_title))
             .setMessage(message)
-            .setPositiveButton("ok",null)
+            .setPositiveButton(getString(R.string.ok),null)
             .show()
         }catch (e:NumberFormatException){
             //println("請輸入數字 1-10")
-            Log.d("MainActivity","請輸入數字 1-10")
+            Log.d(TAG,"請輸入數字 1-10")
         }
     }
 

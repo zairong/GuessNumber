@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">猜數字</string>
+    <string name="app_name">GuessNumber</string>
+    <string name="please_enter_a_number">please enter a number(1-10)</string>
+    <string name="ok">ok</string>
+    <string name="Bingo">Bingo</string>
+    <string name="Smaller">Smaller</string>
+    <string name="Bigger">Bigger</string>
+    <string name="dialog_title">Message</string>
 </resources>
