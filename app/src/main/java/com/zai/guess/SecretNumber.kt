@@ -1,8 +1,11 @@
 package com.zai.guess
 
+import java.util.*
+
 class SecretNumber {
     val guess_count =10
-    val secretNumber = (Math.random()*guess_count + 1).toInt()
+    // val secretNumber = (Math.random()*guess_count + 1).toInt()
+    val secretNumber = Random().nextInt(10)+1
     var count = 0
     fun different(number:Int):Int{
         count++
