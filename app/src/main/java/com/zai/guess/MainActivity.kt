@@ -19,12 +19,14 @@ class MainActivity : AppCompatActivity() {
             val n:Int =number.text.toString().toInt()
            // println("number:$n")
             Log.d("MainActivity","number:$n")
-            if (secretNumber.different(n)> 0){
-                Toast.makeText(this, "Bigger", Toast.LENGTH_LONG).show()
-            }else if (secretNumber.different(n)<0){
-                Toast.makeText(this, "Smaller", Toast.LENGTH_LONG).show()
-            }else
-                Toast.makeText(this, "Bingo", Toast.LENGTH_LONG).show()
+            val diff = secretNumber.different(n)
+            var message = "Bingo"
+            if (diff> 0){
+                message = "Bigger"
+            }else if (diff <0){
+                message = "Smaller"
+            }
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 
         }catch (e:NumberFormatException){
             //println("請輸入數字 1-10")
