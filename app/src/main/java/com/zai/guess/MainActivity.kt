@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val n:Int =number.text.toString().toInt()
            // println("number:$n")
-            Log.d("MainActivity","number:$n")
+            Log.d(TAG,"number:$n")
             val diff = secretNumber.different(n)
             var message = getString(R.string.Bingo)
             if (diff> 0){
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         }catch (e:NumberFormatException){
             //println("請輸入數字 1-10")
             Log.d(TAG,"請輸入數字 1-10")
+            Toast.makeText(this, "請輸入數字 1-10", Toast.LENGTH_LONG).show()
         }
     }
 
