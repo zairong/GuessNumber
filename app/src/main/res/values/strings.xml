@@ -6,7 +6,7 @@
     <string name="Smaller">Smaller</string>
     <string name="Bigger">Bigger</string>
     <string name="dialog_title">Message</string>
-    <string name="title_activity_materia">MateriaActivity</string>
+    <string name="title_activity_material">MateriaActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

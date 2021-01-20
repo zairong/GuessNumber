@@ -1,5 +1,6 @@
 package com.zai.guess
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,23 +18,23 @@ class MaterialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_material)
         setSupportActionBar(findViewById(R.id.toolbar))
-        Log.d(TAG,"SecretNumber:${secretNumber.secretNumber}")
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             AlertDialog.Builder(this)
                     .setTitle(getString(R.string.Replay))
                     .setMessage(getString(R.string.Are_you_sure))
-                    .setPositiveButton(getString(R.string.ok),{dialog,which->
+                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
                         secretNumber.reset()
                         counter.text = secretNumber.count.toString()
                         number.setText("")
-                    })
+                        Log.d(TAG, "onCreate: ${secretNumber.secretNumber}")
+                    }
                     .setNeutralButton(getString(R.string.cancel),null)
                     .show()
 
         }
         counter.text = secretNumber.count.toString()
-
+        Log.d(TAG, "onCreate: ${secretNumber.secretNumber}")
     }
     fun check(view: View){
         try {
@@ -52,8 +53,15 @@ class MaterialActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.dialog_title))
                 .setMessage(message)
-                .setPositiveButton(getString(R.string.ok),null)
-                .show()
+                .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                    if (diff == 0) {
+                        val intent = Intent(this, RecordMainActivity::class.java)
+                        intent.putExtra("COUNTER", secretNumber.count)
+                        startActivity(intent)
+
+                    }
+                }
+                    .show()
         }catch (e:NumberFormatException){
             //println("請輸入數字 1-10")
             Log.d(TAG,"請輸入數字 1-10")

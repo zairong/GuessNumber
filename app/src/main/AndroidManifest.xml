@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.猜數字">
+        <activity android:name=".RecordMainActivity"></activity>
         <activity
             android:name=".MaterialActivity"
-            android:label="@string/title_activity_materia"
+            android:label="@string/title_activity_material"
             android:theme="@style/Theme.猜數字.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

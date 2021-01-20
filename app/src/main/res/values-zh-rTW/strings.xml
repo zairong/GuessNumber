@@ -10,4 +10,5 @@
     <string name="Replay">重新開始遊戲</string>
     <string name="Are_you_sure">你確定嗎?</string>
     <string name="cancel">取消</string>
+    <string name="title_activity_material">猜數字</string>
 </resources>
