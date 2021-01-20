@@ -19,6 +19,8 @@ class RecordMainActivity : AppCompatActivity() {
                     .putInt("Rec_count",count)
                     .putString("Rec_nickname",nick)
                     .apply()
+            setResult(RESULT_OK)
+            finish()
         }
     }
 

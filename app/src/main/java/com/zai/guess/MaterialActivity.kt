@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.content_material.*
 
 class MaterialActivity : AppCompatActivity() {
+    private val REC_RECORD = 100
     val secretNumber = SecretNumber()
     val TAG = MaterialActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,22 +21,36 @@ class MaterialActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.Replay))
-                    .setMessage(getString(R.string.Are_you_sure))
-                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
-                        secretNumber.reset()
-                        counter.text = secretNumber.count.toString()
-                        number.setText("")
-                        Log.d(TAG, "onCreate: ${secretNumber.secretNumber}")
-                    }
-                    .setNeutralButton(getString(R.string.cancel),null)
-                    .show()
+            replay()
 
         }
         counter.text = secretNumber.count.toString()
         Log.d(TAG, "onCreate: ${secretNumber.secretNumber}")
     }
+
+    private fun replay() {
+        AlertDialog.Builder(this)
+                .setTitle(getString(R.string.Replay))
+                .setMessage(getString(R.string.Are_you_sure))
+                .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                    secretNumber.reset()
+                    counter.text = secretNumber.count.toString()
+                    number.setText("")
+                    Log.d(TAG, "onCreate: ${secretNumber.secretNumber}")
+                }
+                .setNeutralButton(getString(R.string.cancel), null)
+                .show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REC_RECORD){
+            if (resultCode == RESULT_OK){
+                replay()
+            }
+        }
+    }
+
     fun check(view: View){
         try {
             val n:Int =number.text.toString().toInt() //將 number import 改為 material.*
@@ -57,7 +72,8 @@ class MaterialActivity : AppCompatActivity() {
                     if (diff == 0) {
                         val intent = Intent(this, RecordMainActivity::class.java)
                         intent.putExtra("COUNTER", secretNumber.count)
-                        startActivity(intent)
+                       // startActivity(intent)
+                        startActivityForResult(intent,REC_RECORD)
 
                     }
                 }
